@@ -1,0 +1,79 @@
+<%- include("../partials/header") %>
+
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active"><%= products.name %></li>
+        </ol>
+    </div>
+</div>
+<div class="single">
+
+<div class="container">
+    <div class="col-md-9">
+        <div class="col-md-5 grid">		
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>
+                        <div class="thumb-image"> <img src="<%- products.image %>" data-imagezoom="true" class="img-responsive"> </div>
+                    </li>
+                </ul>
+            </div>
+        </div>	
+        <div class="col-md-7 single-top-in">
+            <div class="single-para simpleCart_shelfItem">
+                <h2>More details about <%= products.name %></h2>
+                <p><%= products.description %></p>
+                <div class="star-on">
+                    <ul>
+                        <li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>
+                    </ul>
+                    <div class="review">
+                        <a href="#"> 3 reviews </a>
+                        <a href="#">  Write a review</a>
+                    </div>
+                <div class="clearfix"> </div>
+                </div>
+                <form action="/store/<%-products._id %>/order" method="post">
+                    <input type="hidden" name="fname" value="<%- currentUser.firstName %>">
+                    <input type="hidden" name="lname" value="<%- currentUser.lastName %>">
+                    <input type="hidden" name="phone" value="<%- currentUser.phone %>">
+                    <input type="hidden" name="email" value="<%- currentUser.email %>">
+                    <input type="hidden" name="image" value="<%- products.image %>">
+                    <input type="hidden" name="pname" value="<%- products.name %>">
+                    <input type="hidden" name="category" value="<%- products.category %>">
+                    <input type="submit" value="Order Product">
+                </form>
+                <a href="tel: +(234) 901 778 1717" class="cart item_add">Call Us</a>                    
+            </div>
+        </div>
+        <div class="clearfix"> </div>		
+    </div>
+<!----->
+        <div class="col-md-3 product-bottom">
+            <!--categories-->
+            <div class=" rsidebar span_1_of_left">
+                <h3 class="cate">Categories</h3>
+                <ul class="menu-drop">
+                    <li class="item3"><a href="/store/men">Men wears</a>
+                    </li>
+                    <li class="item2"><a href="/store/women">Women Wears</a>
+                    </li>
+                    <li class="item2"><a href="/store/kids">Kids Wears</a>
+                    </li>
+                    <li class="item2"><a href="/store/accessories">Accessories</a>
+                    </li>
+                </ul>
+            </div>                        
+        </div>
+    <div class="clearfix"> </div>
+</div>
+</div>
+
+<%- include("../partials/footer") %>

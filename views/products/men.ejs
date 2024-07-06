@@ -1,0 +1,79 @@
+<%- include("../partials/header") %>
+
+<style>
+    .button {
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+   .button form {
+        display: inline;
+    }
+</style>
+
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInLeft;">
+            <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Men Wears</li>
+        </ol>
+    </div>
+</div>
+<!--content-->
+<div class="products">
+    <div class="container">
+        <h2>Products</h2>
+        
+        <div class="col-md-9">
+            <div class="content-top1">
+    
+                <% products.forEach(function(product){ %>
+    
+                <div class="col-md-4 col-md4">
+                    <div class="col-md1 simpleCart_shelfItem">
+                        <a href="/store/<%- product._id %>">
+                            <img class="img-responsive" src="<%- product.image %>" alt="" />
+                        </a>
+                        <h3><a href="/store/<%- product._id %>"><%- product.name %></a></h3>
+                        <div class="price">
+                            <a href="/store/<%- product._id %>" class="item_add">More Details</a>
+                            <div class="button">
+                                <% if(currentUser && product.author.id.equals(currentUser._id)){ %>
+                                    <form class="d-inline" action="/store/<%- product._id %>/edit" method="POST">
+                                        <button class="btn btn-warning">Edit</button>
+                                    </form>
+                                    <form class="d-inline" action="/store/<%- product._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                <% } %> 
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>    
+                <% }); %> 
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 product-bottom">
+            <!--categories-->
+            <div class=" rsidebar span_1_of_left">
+                <h3 class="cate">Categories</h3>
+                     <ul class="menu-drop">
+                        <li class="item3"><a href="/store/men">Men wears</a>
+                        </li>
+                        <li class="item2"><a href="/store/women">Women Wears</a>
+                        </li>
+                        <li class="item2"><a href="/store/kids">Kids Wears</a>
+                        </li>
+                        <li class="item2"><a href="/store/accessories">Accessories</a>
+                        </li>
+                </ul>
+            </div>                        
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>
+
